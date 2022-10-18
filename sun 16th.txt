@@ -1,0 +1,72 @@
+ansible-vault decrypt dev-inv.yml
+
+[aws]
+44.204.147.5 ansible_ssh_user=ec2-user
+54.205.30.66 ansible_ssh_user=ubuntu
+
+[aws:vars]
+ansible_ssh_private_key_file=/home/vagrant/ans.pem
+ansible_ssh_user=ec2-user
+
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  268  unzip awscliv2.zip
+  269  sudo yum install unzip -y
+  270  unzip awscliv2.zip
+  271  sudo ./aws/install
+  272  aws --version
+
+sudo yum install ntp ntpdate
+sudo systemctl start ntpd
+sudo systemctl enable ntpd
+ sudo systemctl status ntpd
+
+280  ansible-inventory dev-inv.yml --list
+  281  ansible-inventory dev-inv.yml --graph
+  282  clear
+  283  ansible-inventory dev-inv.yml --graph
+  284  ansible-inventory --graph
+  285  clear
+  286  history
+
+sudo yum -y install python-boto3
+
+ansible-inventory -i aws_ec2.yml --lis
+
+---
+plugin: aws_ec2
+regions:
+  - us-east-1
+
+filters:
+  instance-state-name: running
+  tag:env:
+     - qa
+
+310  ansible-inventory -i aws_ec2.yml --list
+  311  vim aws_ec2.yml
+  312  clear
+  313  ansible-inventory -i aws_ec2.yml --list
+  314  vim aws_ec2.yml
+  315  ansible-inventory -i aws_ec2.yml --list
+
+---
+plugin: aws_ec2
+regions:
+  - us-east-1
+ 
+filters:
+  instance-state-name: running
+  tag:env:
+     - dev
+     - qa 
+
+keyed_groups:
+ 
+  - prefix: In-env
+    key: tags.env
+
